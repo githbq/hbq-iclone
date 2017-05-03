@@ -7,7 +7,7 @@
         "type": "node",
         "request": "launch",
         "name": "启动程序",
-        "program": "${workspaceRoot}/index.ts",
+        "program": "${workspaceRoot}/ts/index.ts",
         "cwd": "${workspaceRoot}",
         "outFiles": ["${workspaceRoot}/build/**/*.js"],
         "sourceMaps": true

@@ -1,3 +1,3 @@
  require('ts-node/register')
 
- require('./index.ts')
+ require('./ts/index.ts')
