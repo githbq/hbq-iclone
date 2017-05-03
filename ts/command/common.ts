@@ -7,10 +7,10 @@ import * as  chalk from 'chalk'
  * 公共属性及方法
  */
 export default {
-    templateFilePath: ioHelper.pathTool.join(__dirname, '..', 'templates.json'),
+    templateFilePath: ioHelper.pathTool.join(__dirname, '../../', 'templates.json'),
     rootPath: ioHelper.pathTool.join(__dirname, '..'),
     getTemplate() {
-        return require('../templates.json')
+        return require(this.templateFilePath)
     },
     getTemplateString() {
         return stringify(this.getTemplate())

@@ -5,7 +5,7 @@
         "module": "commonjs",
         "sourceMap": true,
         "outDir": "./build",
-        "rootDir": "./"
+        "rootDir": "./ts"
     },
     "exclude": [
         "node_modules",

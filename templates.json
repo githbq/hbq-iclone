@@ -1,0 +1,14 @@
+{
+  "template": {
+    "module": {
+      "description": "empty module boilerplate",
+      "branch": "master",
+      "url": "git@github.com:githbq/hbq-module-boilerplate.git"
+    },
+    "cli": {
+      "description": "命令行项目模板",
+      "branch": "master",
+      "url": "git@github.com:githbq/hbq-module-cli-boilerplate.git"
+    }
+  }
+}
