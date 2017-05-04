@@ -38,8 +38,5 @@ tsconfig.json
 tslint.json
 typings.json
 yarn.lock
-.vscode/ 
-*.ts
-*.map
-.npmignore
-ts/
+.vscode/  
+.npmignore 
