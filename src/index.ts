@@ -7,7 +7,7 @@ import listCommand from './command/list'
 import deleteCommand from './command/delete'
 
 let argv = yargs
-    .command('init', '初始化', {
+    .command('init', '初始化新项目', {
         template: {
             alias: ['t', 'templateName'],
             default: '',
@@ -54,7 +54,7 @@ let argv = yargs
         deleteCommand.start(argv)
     })
     .help()
-    .command('list', '配置', (argv) => { 
+    .command('list', '查看当前配置', (argv) => { 
         listCommand.start(argv)
     })
     .help()
