@@ -611,9 +611,9 @@ promise-path@^1.2.3:
     glob "^7.0.3"
     request "^2.72.0"
 
-prompt-promise2@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.npmjs.org/prompt-promise2/-/prompt-promise2-0.0.1.tgz#c857fd8f2d93a4db845555581b81018f7cab1c5d"
+prompt-promise2@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.npmjs.org/prompt-promise2/-/prompt-promise2-0.0.2.tgz#1668b36769883585dfd2bc479d5f8211e1d375fd"
   dependencies:
     keypress "^0.2.1"
     tslib "^1.6.1"
