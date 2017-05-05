@@ -16,4 +16,9 @@
 ### 查看帮助  
 >   iclone || iclone --help 
 
+## 更新纪录 
+- git clone 命令增加 --depth=1 参数,减少请求不必要的版本历史
+- 考虑到 gitmodule 子模板 ，git clone 增加 --recursive 参数 
+
+
  

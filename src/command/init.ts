@@ -82,7 +82,7 @@ export default {
     },
     async clone({ projectPath, projectName, branch, gitUrl }) {
         console.log(chalk.white('\n...开始生成项目'))
-        let cmdStr = `git clone -b ${branch} ${gitUrl} ${projectName}`
+        let cmdStr = `git clone --depth=1 -b ${branch} ${gitUrl} ${projectName} --recursive`
         return new Promise((resolve, reject) => {
             exec(cmdStr, (error, stdout, stderr) => {
                 ioHelper.deleteFile(ioHelper.pathTool.join(projectPath, '.git')).then(() => {
