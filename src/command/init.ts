@@ -42,7 +42,7 @@ export default {
      * 输入参数
      */
     async inputParams({ templateName, projectName }) {
-        console.log(`$> templateName:${templateName},projectName:${projectName}`)
+        console.log(`$> init:templateName:${templateName},projectName:${projectName}`)
 
         const config = common.getTemplate()
 
@@ -51,16 +51,15 @@ export default {
         !projectName && (projectName = await prompt('项目名称: '))
 
         templateName = templateName || 'module'
-
         if (!config.template[templateName]) {
             console.log(chalk.red('\n × 模板不存在!'))
-            return await this.inputParams()
+            return await this.inputParams({ templateName: '', projectName })
         }
         if (!projectName) {
             console.log(chalk.red('\n × 请输入项目名称!'))
-            return await this.inputParams()
+            return await this.inputParams({ templateName, projectName: '' })
         }
-        console.log(`$> templateName:${templateName},projectName:${projectName}`)
+        console.log(`$> now:templateName:${templateName},projectName:${projectName}`)
         return { templateName, projectName }
     },
     /**
