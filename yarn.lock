@@ -444,7 +444,7 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.3.6"
 
-keypress@~0.2.1:
+keypress@^0.2.1:
   version "0.2.1"
   resolved "https://registry.npmjs.org/keypress/-/keypress-0.2.1.tgz#1e80454250018dbad4c3fe94497d6e67b6269c77"
 
@@ -513,16 +513,6 @@ mkdirp@*, mkdirp@^0.5.1:
   resolved "http://registry.npm.taobao.org/mkdirp/download/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   dependencies:
     minimist "0.0.8"
-
-native-or-another@~2.0.0:
-  version "2.0.0"
-  resolved "https://registry.npmjs.org/native-or-another/-/native-or-another-2.0.0.tgz#17a567f92beea9cd71acff96a7681a735eca3bff"
-  dependencies:
-    native-or-bluebird "^1.1.2"
-
-native-or-bluebird@^1.1.2:
-  version "1.2.0"
-  resolved "https://registry.npmjs.org/native-or-bluebird/-/native-or-bluebird-1.2.0.tgz#39c47bfd7825d1fb9ffad32210ae25daadf101c9"
 
 node-dir@^0.1.16:
   version "0.1.16"
@@ -621,12 +611,12 @@ promise-path@^1.2.3:
     glob "^7.0.3"
     request "^2.72.0"
 
-prompt-promise@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.npmjs.org/prompt-promise/-/prompt-promise-1.0.3.tgz#78ce4fcb9a14a108c49174f2d808c440d1bde265"
+prompt-promise2@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.npmjs.org/prompt-promise2/-/prompt-promise2-0.0.1.tgz#c857fd8f2d93a4db845555581b81018f7cab1c5d"
   dependencies:
-    keypress "~0.2.1"
-    native-or-another "~2.0.0"
+    keypress "^0.2.1"
+    tslib "^1.6.1"
 
 punycode@^1.4.1:
   version "1.4.1"

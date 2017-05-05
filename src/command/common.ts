@@ -1,6 +1,6 @@
 import * as  ioHelper from 'io-helper'
 import * as  stringify from "json-stringify-pretty-compact"
-import * as prompt from 'prompt-promise'
+import prompt from 'prompt-promise2'
 import * as  _ from 'lodash'
 import * as  chalk from 'chalk'
 /**
