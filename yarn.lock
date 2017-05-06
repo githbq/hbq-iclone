@@ -417,7 +417,7 @@ json-stable-stringify@^1.0.1:
   dependencies:
     jsonify "~0.0.0"
 
-json-stringify-pretty-compact@^1.0.3:
+json-stringify-pretty-compact@^1.0.3, json-stringify-pretty-compact@^1.0.4:
   version "1.0.4"
   resolved "https://registry.npmjs.org/json-stringify-pretty-compact/-/json-stringify-pretty-compact-1.0.4.tgz#d5161131be27fd9748391360597fcca250c6c5ce"
 
@@ -611,9 +611,9 @@ promise-path@^1.2.3:
     glob "^7.0.3"
     request "^2.72.0"
 
-prompt-promise2@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.npmjs.org/prompt-promise2/-/prompt-promise2-0.0.2.tgz#1668b36769883585dfd2bc479d5f8211e1d375fd"
+prompt-promise2@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.npmjs.org/prompt-promise2/-/prompt-promise2-0.0.3.tgz#3dd8836573008eea96b3bbc12d83499cd41511a6"
   dependencies:
     keypress "^0.2.1"
     tslib "^1.6.1"
@@ -815,11 +815,7 @@ tsconfig@^6.0.0:
     strip-bom "^3.0.0"
     strip-json-comments "^2.0.0"
 
-tslib@^1.6.1:
-  version "1.6.1"
-  resolved "https://registry.npmjs.org/tslib/-/tslib-1.6.1.tgz#b77b09abc5fa4935e157d838b80e36dad47152c4"
-
-tslib@^1.7.0:
+tslib@^1.6.1, tslib@^1.7.0:
   version "1.7.0"
   resolved "https://registry.npmjs.org/tslib/-/tslib-1.7.0.tgz#6e8366695f72961252b35167b0dd4fbeeafba491"
 
