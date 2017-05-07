@@ -1,6 +1,6 @@
 {
   "name": "iclone-cli",
-  "version": "2.1.10",
+  "version": "2.1.11",
   "description": "轻量级项目创建脚手架,可自定义模板 ",
   "bin": {"iclone": "./build/index.js"},
   "scripts": {
@@ -20,10 +20,12 @@
     "json-stringify-pretty-compact": "^1.0.4",
     "lodash": "^4.17.4",
     "prompt-promise2": "^0.0.3",
+    "spawn-helper": "^0.0.5",
     "tslib": "^1.7.0",
     "yargs": "^7.1.0"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.64",
     "@types/node": "^6.0.48",
     "ts-node": "^3.0.2",
     "tslint": "^5.1.0",
