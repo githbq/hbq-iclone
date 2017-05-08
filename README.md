@@ -37,6 +37,8 @@
 
 - 考虑到 gitmodule 子模块 ，git clone 增加 --recursive 参数 
 
+- git init 创建项目的时候 连同git init ,git add . git commit -am  ,yarn install 一并做了
+
 
 
  

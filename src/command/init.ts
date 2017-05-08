@@ -1,8 +1,7 @@
-const exec = require('child_process').exec
 import * as  chalk from 'chalk'
 import * as  ioHelper from 'io-helper'
 import common from './common'
-const { prompt, stringify, exit, showError } = common;
+const { prompt, exec, stringify, exit, showError } = common;
 export default {
     /**
      * 启动
@@ -83,19 +82,17 @@ export default {
     async clone({ projectPath, projectName, branch, gitUrl }) {
         console.log(chalk.white('\n...开始生成项目'))
         let cmdStr = `git clone --depth=1 -b ${branch} ${gitUrl} ${projectName} --recursive`
-        return new Promise((resolve, reject) => {
-            exec(cmdStr, (error, stdout, stderr) => {
-                ioHelper.deleteFile(ioHelper.pathTool.join(projectPath, '.git')).then(() => {
-                    if (error) {
-                        reject(error)
-                        return
-                    }
-                    resolve()
-                    console.log(chalk.green('\n √ 项目创建成功! \n 执行以下命令开干吧'))
-                    console.log(`\n cd ${projectName} &&  git init &&  yarn \n`)
-                })
-            })
-        })
+        await exec(cmdStr)
+        console.log(chalk.green(`ok`))
+        console.log(chalk.green(`正在删除原始.git版本信息`))
+        await ioHelper.deleteFile(ioHelper.pathTool.join(projectPath, '.git'))
+        console.log(chalk.green(`ok`))
+        console.log(chalk.green(`正在执行：git init && git add . && git commit - am "init"`))
+        await exec('git init && git add . && git commit -am "init"', { cwd: projectPath })
+        console.log(chalk.green(`正在执行：yarn install`))
+        await exec('yarn install', { cwd: projectPath })
+        console.log(chalk.green('\n项目生成成功'))
+        console.log(chalk.green(`\n执行 cd ${projectPath} 开干吧`))
     },
     //开始生成项目
     async generate({ templateName, projectPath, projectName, branch, gitUrl }) {

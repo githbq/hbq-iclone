@@ -4,6 +4,8 @@ import { prompt } from 'prompt-promise2'
 import * as  _ from 'lodash'
 import * as  chalk from 'chalk'
 import spawn from 'spawn-helper'
+
+export const cwd = process.cwd().replace(/\\/g, '/')
 /**
  * 公共属性及方法
  */
@@ -52,4 +54,4 @@ export function urlResolve(url) {
 }
 
 
-export default { exec, templateFilePath, rootPath, getTemplate, getTemplateString, showTemplate, stringify, prompt, writeFile, writeTemplate, exit, showError, urlResolve }
+export default { cwd,exec, templateFilePath, rootPath, getTemplate, getTemplateString, showTemplate, stringify, prompt, writeFile, writeTemplate, exit, showError, urlResolve }
