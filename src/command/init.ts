@@ -18,7 +18,6 @@ export default {
         await this.ensureExists(projectPath);
         //开始生成
         await this.generate({ projectPath, projectName, branch, gitUrl, templateName })
-        exit()
     },
     /**
      * 
@@ -92,7 +91,9 @@ export default {
         console.log(chalk.green(`正在执行：yarn install`))
         await exec('yarn install', { cwd: projectPath })
         console.log(chalk.green('\n项目生成成功'))
-        console.log(chalk.green(`\n执行 cd ${projectPath} 开干吧`))
+        console.log(`当前目录切换到: ${projectPath}`)
+        process.chdir(projectPath)
+
     },
     //开始生成项目
     async generate({ templateName, projectPath, projectName, branch, gitUrl }) {
