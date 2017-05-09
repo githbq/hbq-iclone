@@ -1,4 +1,4 @@
-#!/usr/bin/env node --harmony                      
+                   
 import * as  yargs from 'yargs'
 import initCommand from './command/init'
 import addCommand from './command/add'
