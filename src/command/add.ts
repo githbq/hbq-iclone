@@ -36,5 +36,22 @@ export default {
             showError(e)
         }
         exit()
-    }
+    },
+    command: ['add', '添加配置', {
+        template: {
+            alias: ['t', 'templateName'],
+            default: '',
+            describe: '模板'
+        },
+        url: {
+            alias: ['u', 'gitUrl'],
+            default: '',
+            describe: 'git地址'
+        },
+        branch: {
+            alias: ['b'],
+            default: '',
+            describe: 'git分支'
+        }
+    }]
 }

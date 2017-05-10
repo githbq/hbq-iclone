@@ -5,5 +5,8 @@ export default {
      */
     async start(argv) {
         await common.showTemplate()
-    }
+    },
+    command: [
+        'list', '查看当前配置'
+    ]
 }

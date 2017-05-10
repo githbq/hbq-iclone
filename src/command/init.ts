@@ -1,7 +1,8 @@
 import * as  chalk from 'chalk'
-import * as  ioHelper from 'io-helper'
+import * as  pathTool from 'path'
 import common from './common'
 const { prompt, exec, stringify, exit, showError } = common;
+import * as fs from 'fs-extra-promise'
 export default {
     /**
      * 启动
@@ -13,7 +14,7 @@ export default {
         let { templateName, projectName } = await this.inputParams(data)
         let gitUrl = config.template[templateName].url
         let branch = config.template[templateName].branch
-        const projectPath = ioHelper.pathTool.join(process.cwd(), projectName)
+        const projectPath = pathTool.join(process.cwd(), projectName)
         //判断是否已存在
         await this.ensureExists(projectPath);
         //开始生成
@@ -25,12 +26,12 @@ export default {
      * @param {*确认存在 存在提示是否删除} projectPath 
      */
     async ensureExists(projectPath) {
-        const exists = ioHelper.existsSync(projectPath)
+        const exists = fs.pathExists(projectPath)
         if (exists) {
             console.log(chalk.red(`\n × 项目已存在,路径:${projectPath}`))
             let isDelete = await prompt('是否删除已存在的目录及文件:(y/n) ')
             if (isDelete.toLowerCase().indexOf('y') != -1) {
-                await ioHelper.deleteFile(projectPath)
+                await fs.remove(projectPath)
                 console.log(chalk.green('\n √ 旧项目删除成功!'))
             } else {
                 exit()
@@ -67,8 +68,8 @@ export default {
      */
     async caseModule({ templateName, projectName, projectPath, gitUrl }) {
         if (templateName == 'module') { //如果空模块项目 做一些修改package操作
-            const packagePath = ioHelper.pathTool.join(projectPath, 'package.json')
-            let packageText = await ioHelper.readFile(packagePath)
+            const packagePath = pathTool.join(projectPath, 'package.json')
+            let packageText = await fs.readFile(packagePath, 'utf8')
             let packageData = JSON.parse(packageText)
             packageData.name = projectName
             packageData.description = projectName
@@ -76,7 +77,7 @@ export default {
             packageData.keywords.push(projectName)
             packageData.bugs.url = gitUrl
             // packageData.homepage = `${gitUrl}#readme`
-            return await ioHelper.saveFile(packagePath, stringify(packageData))
+            return await fs.outputFile(packagePath, stringify(packageData))
         }
     },
     async clone({ projectPath, projectName, branch, gitUrl }) {
@@ -85,7 +86,7 @@ export default {
         await exec(cmdStr)
         console.log(chalk.green(`ok`))
         console.log(chalk.green(`正在删除原始.git版本信息`))
-        await ioHelper.deleteFile(ioHelper.pathTool.join(projectPath, '.git'))
+        await fs.remove(pathTool.join(projectPath, '.git'))
         console.log(chalk.green(`ok`))
         console.log(chalk.green(`正在执行：git init && git add . && git commit - am "init"`))
         await exec('git init && git add . && git commit -am "init"', { cwd: projectPath })
@@ -102,5 +103,18 @@ export default {
         } catch (e) {
             showError(e)
         }
-    }
+    }, command: [
+        'init', '初始化新项目', {
+            template: {
+                alias: ['t', 'templateName'],
+                default: '',
+                describe: '模板'
+            },
+            name: {
+                alias: ['n', 'projectName'],
+                default: '',
+                describe: '项目名称'
+            }
+        }
+    ]
 }

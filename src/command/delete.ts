@@ -28,5 +28,14 @@ export default {
             showError(e)
         }
         exit()
-    }
+    },
+    command: [
+        'delete', '删除配置', {
+            template: {
+                alias: ['t', 'templateName'],
+                default: '',
+                describe: '模板'
+            }
+        }
+    ]
 }

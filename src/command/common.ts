@@ -1,9 +1,10 @@
-import * as  ioHelper from 'io-helper'
+import * as pathTool from 'path'
 import * as  stringify from 'json-stringify-pretty-compact'
 import { prompt } from 'prompt-promise2'
 import * as  _ from 'lodash'
 import * as  chalk from 'chalk'
 import spawn from 'spawn-helper'
+import * as fs from 'fs'
 
 export const cwd = process.cwd().replace(/\\/g, '/')
 /**
@@ -12,8 +13,8 @@ export const cwd = process.cwd().replace(/\\/g, '/')
 export function exec(cmd: string, opt?: any) {
     return spawn.exec(cmd, opt)
 }
-export const templateFilePath = ioHelper.pathTool.join(__dirname, '../../', 'templates.json')
-export const rootPath = ioHelper.pathTool.join(__dirname, '..')
+export const templateFilePath = pathTool.join(__dirname, '../../', 'templates.json')
+export const rootPath = pathTool.join(__dirname, '..')
 export function getTemplate() {
     return require(templateFilePath)
 }
@@ -35,7 +36,13 @@ export async function prompt(describe) {
     return _.trim(value)
 }
 export async function writeFile(path, content) {
-    return await ioHelper.writeFile(path, content)
+    return new Promise((resolve, reject) => {
+        fs.writeFile(path, content, (err) => {
+            if (err) reject(err);
+            resolve({ path, content })
+        })
+    })
+
 }
 export async function writeTemplate(content) {
     content = _.isString(content) ? content : stringify(content)
@@ -54,4 +61,4 @@ export function urlResolve(url) {
 }
 
 
-export default { cwd,exec, templateFilePath, rootPath, getTemplate, getTemplateString, showTemplate, stringify, prompt, writeFile, writeTemplate, exit, showError, urlResolve }
+export default { cwd, exec, templateFilePath, rootPath, getTemplate, getTemplateString, showTemplate, stringify, prompt, writeFile, writeTemplate, exit, showError, urlResolve }
