@@ -1,13 +1,12 @@
 import * as  chalk from 'chalk'
-import common from './common'
-const { exit, showError, urlResolve, prompt } = common
+import { showError, urlResolve, prompt, getTemplate, showTemplate, writeTemplate } from '../common'
 export default {
     /**
      * 新增
      */
     async start({ templateName, gitUrl, branch, description }) {
-        const config = await common.getTemplate()
-        await common.showTemplate();
+        const config = await getTemplate()
+        await showTemplate()
         console.log(`\n $> templateName:${templateName},gitUrl:${gitUrl},branch:${branch} \n`)
 
         !templateName && (templateName = await prompt('模板名称: '))
@@ -23,19 +22,13 @@ export default {
             config.template[templateName] = { description, branch, url }
         } else {
             console.log(chalk.red('模板已存在!'))
-            exit()
+            return
         }
-
-        try {
-            await common.writeTemplate(config)
-            console.log(chalk.green('模板添加成功!\n'))
-            console.log(chalk.grey('当前模板配置: \n'))
-            await common.showTemplate()
-            console.log('\n')
-        } catch (e) {
-            showError(e)
-        }
-        exit()
+        await writeTemplate(config)
+        console.log(chalk.green('模板添加成功!\n'))
+        console.log(chalk.grey('当前模板配置: \n'))
+        await showTemplate()
+        console.log('\n')
     },
     command: ['add', '添加配置', {
         template: {

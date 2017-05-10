@@ -1,40 +1,40 @@
 import * as  chalk from 'chalk'
 import * as  pathTool from 'path'
-import common from './common'
-const { prompt, exec, stringify, exit, showError } = common;
-import * as fs from 'fs-extra-promise'
+import { cwd, io, prompt, exec, showError, showTemplate, getTemplate } from '../common'
 export default {
     /**
      * 启动
      */
     async start(data) {
-        await common.showTemplate();
-        const config = common.getTemplate();
+        await showTemplate();
+        const config = getTemplate();
         //取得输入参数
         let { templateName, projectName } = await this.inputParams(data)
         let gitUrl = config.template[templateName].url
         let branch = config.template[templateName].branch
-        const projectPath = pathTool.join(process.cwd(), projectName)
+        const projectPath = pathTool.join(cwd, projectName)
         //判断是否已存在
-        await this.ensureExists(projectPath);
+        if (await this.ensureExists(projectPath) === false) {
+            //由上层去exit
+            return
+        }
         //开始生成
         await this.generate({ projectPath, projectName, branch, gitUrl, templateName })
-        exit()
     },
     /**
      * 
      * @param {*确认存在 存在提示是否删除} projectPath 
      */
     async ensureExists(projectPath) {
-        const exists = fs.pathExists(projectPath)
+        const exists = await io.exists(projectPath)
         if (exists) {
             console.log(chalk.red(`\n × 项目已存在,路径:${projectPath}`))
             let isDelete = await prompt('是否删除已存在的目录及文件:(y/n) ')
             if (isDelete.toLowerCase().indexOf('y') != -1) {
-                await fs.remove(projectPath)
+                await io.delete(projectPath)
                 console.log(chalk.green('\n √ 旧项目删除成功!'))
             } else {
-                exit()
+                return false
             }
         }
     },
@@ -44,7 +44,7 @@ export default {
     async inputParams({ templateName, projectName }) {
         console.log(`$> init:templateName:${templateName},projectName:${projectName}`)
 
-        const config = common.getTemplate()
+        const config = getTemplate()
 
         !templateName && (templateName = await prompt('模板名称(默认module): '))
 
@@ -69,7 +69,7 @@ export default {
     async caseModule({ templateName, projectName, projectPath, gitUrl }) {
         if (templateName == 'module') { //如果空模块项目 做一些修改package操作
             const packagePath = pathTool.join(projectPath, 'package.json')
-            let packageText = await fs.readFile(packagePath, 'utf8')
+            let packageText = await io.read(packagePath)
             let packageData = JSON.parse(packageText)
             packageData.name = projectName
             packageData.description = projectName
@@ -77,7 +77,7 @@ export default {
             packageData.keywords.push(projectName)
             packageData.bugs.url = gitUrl
             // packageData.homepage = `${gitUrl}#readme`
-            return await fs.outputFile(packagePath, stringify(packageData))
+            return await io.write(packagePath, packageData)
         }
     },
     async clone({ projectPath, projectName, branch, gitUrl }) {
@@ -86,7 +86,7 @@ export default {
         await exec(cmdStr)
         console.log(chalk.green(`ok`))
         console.log(chalk.green(`正在删除原始.git版本信息`))
-        await fs.remove(pathTool.join(projectPath, '.git'))
+        await io.delete([projectPath, '.git'])
         console.log(chalk.green(`ok`))
         console.log(chalk.green(`正在执行：git init && git add . && git commit - am "init"`))
         await exec('git init && git add . && git commit -am "init"', { cwd: projectPath })

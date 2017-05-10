@@ -1,14 +1,13 @@
 import * as  chalk from 'chalk'
-import common from './common'
-const { prompt, exit, showError } = common
+import { prompt, showError, showTemplate, getTemplate, writeTemplate } from '../common'
 export default {
     /**
      * 删除
      */
     async start({ templateName }) {
-        await common.showTemplate();
+        await showTemplate();
         console.log(`\n $> templateName:${templateName} \n `)
-        const config = common.getTemplate()
+        const config = getTemplate()
 
         !templateName && (templateName = await prompt('模板名称: '))
 
@@ -16,18 +15,13 @@ export default {
             delete config.template[templateName]
         } else {
             console.log(chalk.red('模板不存在!'))
-            exit()
+            return
         }
+        await writeTemplate(config)
+        console.log(chalk.green(`模板:${templateName} 已删除!`))
+        console.log(chalk.grey('当前模板配置:'))
+        await showTemplate()
 
-        try {
-            await common.writeTemplate(config)
-            console.log(chalk.green('模板已删除!'))
-            console.log(chalk.grey('当前模板配置:'))
-            await common.showTemplate()
-        } catch (e) {
-            showError(e)
-        }
-        exit()
     },
     command: [
         'delete', '删除配置', {

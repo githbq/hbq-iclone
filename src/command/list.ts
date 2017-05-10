@@ -1,10 +1,10 @@
-import common from './common'
+import { showTemplate } from '../common'
 export default {
     /**
      * 显示列表
      */
     async start(argv) {
-        await common.showTemplate()
+        await showTemplate()
     },
     command: [
         'list', '查看当前配置'

@@ -4,7 +4,7 @@ import { prompt } from 'prompt-promise2'
 import * as  _ from 'lodash'
 import * as  chalk from 'chalk'
 import spawn from 'spawn-helper'
-import * as fs from 'fs'
+import * as fs from 'fs-extra-promise'
 
 export const cwd = process.cwd().replace(/\\/g, '/')
 /**
@@ -13,8 +13,9 @@ export const cwd = process.cwd().replace(/\\/g, '/')
 export function exec(cmd: string, opt?: any) {
     return spawn.exec(cmd, opt)
 }
-export const templateFilePath = pathTool.join(__dirname, '../../', 'templates.json')
+
 export const rootPath = pathTool.join(__dirname, '..')
+export const templateFilePath = pathTool.join(rootPath, 'templates.json')
 export function getTemplate() {
     return require(templateFilePath)
 }
@@ -35,18 +36,30 @@ export async function prompt(describe) {
     let value = await prompt(describe)
     return _.trim(value)
 }
-export async function writeFile(path, content) {
-    return new Promise((resolve, reject) => {
-        fs.writeFile(path, content, (err) => {
-            if (err) reject(err);
-            resolve({ path, content })
-        })
-    })
-
+export const io = {
+    pathTool,
+    read(path) {
+        path = pathTool.join.apply(null, [].concat(path))
+        return fs.readFileAsync(path, 'utf8')
+    },
+    write(path, content, options: any = { fromRoot: false, fromCwd: false }) {
+        path = pathTool.join.apply(null, [].concat(path))
+        path = pathTool.join.apply(null, (options.fromRoot ? [rootPath] : options.fromCwd ? [cwd] : []).concat(path))//考虑多路径处理
+        //对对象进行 美化格式处理
+        content = _.isObject(content) ? stringify(content) : content
+        return fs.outputFileAsync(path, content)
+    }, delete(path) {
+        path = pathTool.join.apply(null, [].concat(path))
+        return fs.removeAsync(path)
+    },
+    exists(path) {
+        path = pathTool.join.apply(null, [].concat(path))
+        return fs.existsAsync(path)
+    }
 }
 export async function writeTemplate(content) {
     content = _.isString(content) ? content : stringify(content)
-    return await writeFile(templateFilePath, content)
+    return await io.write(templateFilePath, content)
 }
 export function exit() {
     process.exit()
@@ -61,4 +74,4 @@ export function urlResolve(url) {
 }
 
 
-export default { cwd, exec, templateFilePath, rootPath, getTemplate, getTemplateString, showTemplate, stringify, prompt, writeFile, writeTemplate, exit, showError, urlResolve }
+export default { io, cwd, exec, templateFilePath, rootPath, getTemplate, getTemplateString, showTemplate, stringify, prompt, writeTemplate, exit, showError, urlResolve }
