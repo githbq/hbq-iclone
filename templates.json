@@ -1,14 +1,20 @@
 {
-  "template": {
-    "module": {
-      "description": "empty module boilerplate",
-      "branch": "master",
-      "url": "https://github.com/githbq/hbq-module-boilerplate.git"
-    },
-    "cli": {
-      "description": "命令行项目模板",
-      "branch": "master",
-      "url": "https://github.com/githbq/hbq-module-cli-boilerplate.git"
+    "template": {
+        "module": {
+            "description": "empty module boilerplate",
+            "branch": "master",
+            "url": "https://github.com/githbq/hbq-module-boilerplate.git"
+        },
+        "cli": {
+            "description": "命令行项目模板",
+            "branch": "master",
+            "url": "https://github.com/githbq/hbq-module-cli-boilerplate.git"
+        },
+        "react": {
+            "description": "react-webpack2 最简化架构",
+            "branch": "master",
+            "url": "https://github.com/githbq/hbq-simple-webpack2-react.git"
+        }
+
     }
-  }
 }
