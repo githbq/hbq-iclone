@@ -41,3 +41,4 @@ tslint.json
 yarn.lock
 src
 *.map
+*.png

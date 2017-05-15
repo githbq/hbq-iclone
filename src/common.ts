@@ -1,5 +1,5 @@
 import * as pathTool from 'path'
-import * as  stringify from 'json-stringify-pretty-compact'
+import * as  stringifyOrigin from 'json-stringify-pretty-compact'
 import { prompt } from 'prompt-promise2'
 import * as  _ from 'lodash'
 import * as  chalk from 'chalk'
@@ -30,7 +30,7 @@ export async function showTemplate() {
     console.log('\n')
 }
 export function stringify(obj) {
-    return stringify(obj);
+    return stringifyOrigin(obj)
 }
 export async function prompt(describe) {
     let value = await prompt(describe)

@@ -1,11 +1,12 @@
 {
     "compilerOptions": {
-        "target": "es5",
+        "target": "es2017",
         "module": "commonjs",
         "moduleResolution": "node",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "allowSyntheticDefaultImports": true,
+        "alwaysStrict": true,
         "sourceMap": true,
         "noEmit": false,
         "noEmitHelpers": true,
@@ -14,18 +15,19 @@
         "lib": ["es6"],
         "typeRoots": ["node_modules/@types"],
         "types": [
-            "node",
+            "bluebird",
+            "fs-extra-promise",
             "lodash",
-            "fs-extra-promise"
+            "node"
         ],
         "outDir": "./build",
         "rootDir": "./src"
     },
     "exclude": [
         "node_modules",
-        "dist",
         "build",
-        "**/test/*test.ts"
+        "**/*.test.ts",
+        "temp"
     ],
     "compileOnSave": false,
     "buildOnSave": false

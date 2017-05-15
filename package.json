@@ -1,13 +1,14 @@
 {
     "name": "iclone-cli",
-    "version": "2.1.21",
+    "version": "2.2.1",
     "description": "轻量级项目创建脚手架,可自定义模板 ",
     "bin": {"iclone": "./bin.js"},
     "scripts": {
         "start": "node run",
         "tsc": "tsc",
         "tsc:w": "tsc -w",
-        "p": "tsc && npm publish"
+        "p": "tsc && npm publish",
+        "lint": "tslint \"src/**/*.ts\" "
     },
     "author": "hubiqing",
     "license": "MIT",

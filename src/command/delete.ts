@@ -5,7 +5,7 @@ export default {
      * 删除
      */
     async start({ templateName }) {
-        await showTemplate();
+        await showTemplate()
         console.log(`\n $> templateName:${templateName} \n `)
         const config = getTemplate()
 
