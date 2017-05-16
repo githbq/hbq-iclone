@@ -16,7 +16,7 @@ export default {
         console.log(`配置文件初始化完成：${localConfigPath}`)
     },
     command: [
-        'config', '初始化配置', {
+        'config', '初始化本地配置文件', {
         }
     ]
 }

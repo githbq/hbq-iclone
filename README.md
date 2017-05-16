@@ -20,6 +20,9 @@
 ### iclone list   
 > 查看当前模板配置   
 
+### iclone config
+> 初始化本地配置文件并且显示配置文件所在目录
+
 ### 查看帮助  
 >   iclone || iclone --help  
 
