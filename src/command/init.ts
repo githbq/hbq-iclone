@@ -1,13 +1,15 @@
 import * as  chalk from 'chalk'
 import * as  pathTool from 'path'
 import { cwd, io, prompt, exec, showError, showTemplate, getTemplate } from '../common'
+let isSelf = false
 export default {
     /**
      * 启动
      */
     async start(data) {
-        await showTemplate()
-        const config = getTemplate()
+        isSelf = data.self
+        await showTemplate(isSelf)
+        const config = await getTemplate(isSelf)
         //取得输入参数
         let { templateName, projectName } = await this.inputParams(data)
         let gitUrl = config.template[templateName].url
@@ -44,7 +46,7 @@ export default {
     async inputParams({ templateName, projectName }) {
         console.log(`$> init:templateName:${templateName},projectName:${projectName}`)
 
-        const config = getTemplate()
+        const config = await getTemplate(isSelf)
 
         !templateName && (templateName = await prompt('模板名称(默认module): '))
 
@@ -73,10 +75,9 @@ export default {
             let packageData = JSON.parse(packageText)
             packageData.name = projectName
             packageData.description = projectName
-            // packageData.repository.url = gitUrl
+            packageData.repository = gitUrl
             packageData.keywords = packageData.keywords || []
             packageData.keywords.push(projectName)
-            // packageData.homepage = `${gitUrl}#readme`
             return await io.write(packagePath, packageData)
         }
     },

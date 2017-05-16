@@ -1,7 +1,11 @@
 import * as requireDir from 'require-dir'
 import * as  yargs from 'yargs'
-import { exit } from './common'
-export function start() {
+import { exit, localConfigPath, io } from './common'
+import configCommand from './command/config'
+async function start() {
+    if (!await io.exists(localConfigPath)) {
+        await configCommand.start()
+    }
     const commands = requireDir('./command')
     Object.keys(commands).forEach(key => {
         const result = commands[key].default

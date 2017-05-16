@@ -5,8 +5,11 @@ import * as  _ from 'lodash'
 import * as  chalk from 'chalk'
 import spawn from 'spawn-helper'
 import * as fs from 'fs-extra-promise'
+//获取当前用户目录 跨平台
+import * as userHome from 'user-home'
 
 export const cwd = process.cwd().replace(/\\/g, '/')
+export const localConfigPath = pathTool.join(userHome, '.iclonerc')
 /**
  * 公共属性及方法
  */
@@ -16,18 +19,39 @@ export function exec(cmd: string, opt?: any) {
 
 export const rootPath = pathTool.join(__dirname, '..')
 export const templateFilePath = pathTool.join(rootPath, 'templates.json')
-export function getTemplate() {
-    return require(templateFilePath)
+export async function getTemplate(self = false) {
+    if (!self && !await io.exists(localConfigPath)) {
+        await io.write(localConfigPath, getEmptyTemplate())
+    }
+    let configString = await io.read(self ? templateFilePath : localConfigPath)
+    return JSON.parse(configString)
 }
-export function getTemplateString() {
-    return stringify(getTemplate())
+export async function getTemplateString(self = false) {
+    return stringify(await getTemplate(self))
 }
-export async function showTemplate() {
+/**
+ * 空模板
+ */
+export function getEmptyTemplate() {
+    return {
+        template: {}
+    }
+}
+export async function showTemplate(self = false) {
     console.log('\n')
     console.log(`***************************`)
-    console.log(chalk.green(await getTemplateString()))
+    console.log(chalk.green(await getTemplateString(self)))
     console.log(`***************************`)
     console.log('\n')
+}
+/**
+ * 
+ * @param content 内容
+ * @param self 是否读取项目配置 否则读取用户配置
+ */
+export async function writeTemplate(content, self = false) {
+    content = _.isString(content) ? content : stringify(content)
+    return await io.write(self ? templateFilePath : localConfigPath, content)
 }
 export function stringify(obj) {
     return stringifyOrigin(obj)
@@ -57,10 +81,7 @@ export const io = {
         return fs.existsAsync(path)
     }
 }
-export async function writeTemplate(content) {
-    content = _.isString(content) ? content : stringify(content)
-    return await io.write(templateFilePath, content)
-}
+
 export function exit() {
     process.exit()
 }
@@ -74,4 +95,4 @@ export function urlResolve(url) {
 }
 
 
-export default { io, cwd, exec, templateFilePath, rootPath, getTemplate, getTemplateString, showTemplate, stringify, prompt, writeTemplate, exit, showError, urlResolve }
+export default { localConfigPath, io, cwd, exec, templateFilePath, rootPath, getTemplate, getTemplateString, showTemplate, stringify, prompt, writeTemplate, exit, showError, urlResolve }
