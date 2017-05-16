@@ -1,6 +1,6 @@
 {
     "name": "iclone-cli",
-    "version": "2.2.1",
+    "version": "2.2.2",
     "description": "轻量级项目创建脚手架,可自定义模板 ",
     "bin": {"iclone": "./bin.js"},
     "scripts": {
@@ -10,16 +10,6 @@
         "p": "tsc && npm publish",
         "lint": "tslint \"src/**/*.ts\" "
     },
-    "author": "hubiqing",
-    "license": "MIT",
-    "bugs": {
-        "url": "git@github.com:githbq/hbq-iclone.git"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git@github.com:githbq/hbq-iclone.git"
-    },
-    "homepage": "git@github.com:githbq/hbq-iclone.git#readme",
     "dependencies": {
         "chalk": "^1.1.3",
         "fs-extra-promise": "^1.0.1",
@@ -38,5 +28,12 @@
         "ts-node": "^3.0.2",
         "tslint": "^5.1.0",
         "typescript": "^2.3.2"
-    }
+    },
+    "author": "hubiqing",
+    "bugs": {
+        "url": "https://github.com/githbq/hbq-iclone.git"
+    },
+    "engines": {"node": ">=7.6"},
+    "repository": "https://github.com/githbq/hbq-iclone.git",
+    "license": "MIT"
 }
