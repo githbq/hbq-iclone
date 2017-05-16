@@ -1,8 +1,11 @@
 import * as requireDir from 'require-dir'
 import * as  yargs from 'yargs'
-import { exit, localConfigPath, io } from './common'
+import { exit, localConfigPath, io } from './lib'
 import configCommand from './command/config'
 async function start() {
+    /**
+     * 检测本地配置文件
+     */
     if (!await io.exists(localConfigPath)) {
         await configCommand.start()
     }
@@ -27,5 +30,9 @@ async function start() {
     }
     return { argv, yargs }
 }
-
-start()
+try {
+    start()
+} catch (e) {
+    console.error(e.message)
+    console.error(e.stack)
+}

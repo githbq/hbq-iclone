@@ -1,6 +1,9 @@
 import * as  chalk from 'chalk'
 import * as _ from 'lodash'
-import { prompt, showError, showTemplate, getTemplate, writeTemplate, io, localConfigPath } from '../common'
+import { prompt, showTemplate, getTemplate, writeTemplate, io, localConfigPath, consoleColor } from '../lib'
+/**
+ * 是否操作项目自身配置
+ */
 let isSelf = false
 export default {
     /**
@@ -9,10 +12,8 @@ export default {
     async start({ templateName, self }) {
         isSelf = self
         await showTemplate(isSelf)
-        let config: any
-
+        let config: any = await getTemplate(isSelf)
         !templateName && (templateName = await prompt('模板名称: '))
-        config = await getTemplate(isSelf)
         if (config.template[templateName]) {
             delete config.template[templateName]
         } else {
@@ -20,8 +21,8 @@ export default {
             return
         }
         await writeTemplate(config, isSelf)
-        console.log(chalk.green(`模板:${templateName} 已删除!`))
-        console.log(chalk.grey('当前模板配置:'))
+        consoleColor.green(`模板:${templateName} 已删除!`)
+        consoleColor.grey('当前模板配置:')
         await showTemplate(isSelf)
 
     },

@@ -1,4 +1,4 @@
-import { showTemplate } from '../common'
+import { showTemplate } from '../lib'
 export default {
     /**
      * 显示列表

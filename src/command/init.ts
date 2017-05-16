@@ -1,6 +1,9 @@
 import * as  chalk from 'chalk'
 import * as  pathTool from 'path'
-import { cwd, io, prompt, exec, showError, showTemplate, getTemplate } from '../common'
+import { cwd, io, prompt, exec, showTemplate, getTemplate } from '../lib'
+/**
+ * 是否操作项目自身配置
+ */
 let isSelf = false
 export default {
     /**
@@ -99,11 +102,7 @@ export default {
     },
     //开始生成项目
     async generate({ templateName, projectPath, projectName, branch, gitUrl }) {
-        try {
-            await this.clone({ projectPath, projectName, branch, gitUrl, templateName })
-        } catch (e) {
-            showError(e)
-        }
+        await this.clone({ projectPath, projectName, branch, gitUrl, templateName })
     }, command: [
         'init', '初始化新项目', {
             template: {
