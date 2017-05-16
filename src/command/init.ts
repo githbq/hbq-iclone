@@ -74,8 +74,8 @@ export default {
             packageData.name = projectName
             packageData.description = projectName
             // packageData.repository.url = gitUrl
+            packageData.keywords = packageData.keywords || []
             packageData.keywords.push(projectName)
-            packageData.bugs.url = gitUrl
             // packageData.homepage = `${gitUrl}#readme`
             return await io.write(packagePath, packageData)
         }
