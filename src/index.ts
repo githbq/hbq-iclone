@@ -7,7 +7,7 @@ async function start() {
      * 检测本地配置文件
      */
     if (!await io.exists(localConfigPath)) {
-        await configCommand.start()
+        await configCommand.start({ init: true })
     }
     const commands = requireDir('./command')
     Object.keys(commands).forEach(key => {
