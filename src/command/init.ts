@@ -99,7 +99,7 @@ export default {
             console.log(`已跳过装库步骤`)
         } else {
             try {
-                const version = await exec('yarn --version')
+                const version = await exec('yarn --version', { preventDefault: true })
             } catch (e) {
                 const installYarnCmdStr = `npm i -g yarn`
                 const setTaobaoRegistry = `yarn config set registry https://registry.npm.taobao.org`
