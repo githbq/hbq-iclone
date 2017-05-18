@@ -1,39 +1,42 @@
-import * as chalk from 'chalk'
+import * as color from 'cli-color'
 import * as ora from 'ora'
-
+    
 import { prettyMs } from './other'
 
 export const consoleColor = {
     ok: ' √ ',
     no: ' × ',
-    color(color, msg, ok = null) {
+    color(colorAction, msg, ok = null, bold: boolean = false) {
         let prefix = ok === null ? '' : ok === false ? this.no : this.ok
-        console.log(chalk[color](`\n ${prefix} ${msg} `))
+        console.log(colorAction(`\n${prefix}${msg} `))
     },
-    grey(msg, ok?: boolean) {
-        this.color('grey', msg, ok)
+    green(msg, ok?: boolean, bold: boolean = false) {
+        this.color(color.green, msg, ok, bold)
     },
-    green(msg, ok?: boolean) {
-        this.color('green', msg, ok)
+    yellow(msg, ok?: boolean, bold: boolean = false) {
+        this.color(bold ? color.yellowBright : color.yellow, msg, ok, bold, bold)
     },
-    yellow(msg, ok?: boolean) {
-        this.color('yellow', msg, ok)
+    red(msg, ok?: boolean, bold: boolean = false) {
+
+        this.color(bold ? color.redBright : color.red, msg, ok, bold)
     },
-    red(msg, ok?: boolean) {
-        this.color('red', msg, ok)
+    white(msg, ok?: boolean, bold: boolean = false) {
+
+        this.color(bold ? color.whiteBright : color.white, msg, ok, bold)
     },
-    white(msg, ok?: boolean) {
-        this.color('white', msg, ok)
+    blue(msg, ok?: boolean, bold: boolean = false) {
+
+        this.color(bold ? color.blueBright : color.blue, msg, ok, bold)
     },
     error(e: Error) {
         this.red(e.message)
     },
     start(msg) {
-        this.white(`$> 开始:${chalk.blue.bgWhite(msg)}`)
+        this.green(`$> 开始:${color.blueBright.bgWhite(msg)}`)
     },
     any(fn) {
-        // chalk.blue.bgWhite(`✅`)
-        fn && console.log(fn.call(this, chalk))
+        // color.blue.bgWhite(`✅`)
+        fn && console.log(fn.call(this, color))
     },
     timeCache: {},
     time(key: string) {

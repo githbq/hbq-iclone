@@ -1,11 +1,12 @@
 import * as  stringifyOrigin from 'json-stringify-pretty-compact'
-import * as _ from 'lodash'
+import * as lodash from 'lodash'
 import * as pathTool from 'path'
 import spawn from 'spawn-helper'
 import * as  prettyMsOrigin from 'pretty-ms'
 
 import { rootPath, cwd } from './consts'
 import { prompt as promptOrigin } from 'prompt-promise2'
+export const _ = lodash
 /**
  * json美化
  */

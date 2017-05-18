@@ -33,11 +33,9 @@ export function getEmptyTemplate() {
     }
 }
 export async function showTemplate(self = false) {
-    console.log('\n')
-    consoleColor.yellow(`******************************************************`)
-    consoleColor.green(await getTemplateString(self))
-    consoleColor.yellow(`******************************************************`)
-    console.log('\n')
+    consoleColor.yellow(`**********************当前项目配置**********************`, null, true)
+    consoleColor.green(await getTemplateString(self), null, true)
+    consoleColor.yellow(`*******************************************************`, null, true)
 }
 /**
  * 

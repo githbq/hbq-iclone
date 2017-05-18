@@ -1,6 +1,4 @@
-import * as  chalk from 'chalk'
-import * as _ from 'lodash'
-import { prompt, showTemplate, getTemplate, writeTemplate, io, localConfigPath, consoleColor } from '../lib'
+import { _, prompt, showTemplate, getTemplate, writeTemplate, io, localConfigPath, consoleColor } from '../lib'
 /**
  * 是否操作项目自身配置
  */
@@ -17,12 +15,12 @@ export default {
         if (config.template[templateName]) {
             delete config.template[templateName]
         } else {
-            console.log(chalk.red('模板不存在!'))
+            consoleColor.red('模板不存在!', false, true)
             return
         }
         await writeTemplate(config, isSelf)
         consoleColor.green(`模板:${templateName} 已删除!`)
-        consoleColor.grey('当前模板配置:')
+        consoleColor.white('当前模板配置:')
         await showTemplate(isSelf)
 
     },

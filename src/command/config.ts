@@ -1,6 +1,4 @@
-import * as  chalk from 'chalk'
-import * as _ from 'lodash'
-import { prompt, showTemplate, getTemplate, writeTemplate, io, localConfigPath, consoleColor } from '../lib'
+import { _, prompt, showTemplate, getTemplate, writeTemplate, io, localConfigPath, consoleColor } from '../lib'
 /**
  * 配置文件初始化
  */

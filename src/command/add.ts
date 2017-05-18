@@ -1,6 +1,4 @@
-import * as  chalk from 'chalk'
-import * as _ from 'lodash'
-import { localConfigPath, urlResolve, prompt, getTemplate, showTemplate, writeTemplate, io } from '../lib'
+import { _, localConfigPath, urlResolve, prompt, getTemplate, showTemplate, writeTemplate, io, consoleColor } from '../lib'
 /**
  * 是否操作项目自身配置
  */
@@ -18,13 +16,13 @@ export default {
             const url = urlResolve(gitUrl)
             config.template[templateName] = { description, branch, url }
         } else {
-            console.log(chalk.red('模板已存在!'))
+            consoleColor.red('模板已存在!', false)
             return
         }
         await writeTemplate(config, isSelf)
 
-        console.log(chalk.green('\n模板添加成功!\n'))
-        console.log(chalk.grey('当前模板配置:'))
+        consoleColor.green('模板添加成功!')
+        consoleColor.white('当前模板配置:')
         await showTemplate(isSelf)
         console.log('\n')
     },
@@ -32,22 +30,22 @@ export default {
         console.log(`$> init:templateName:${templateName},gitUrl:${gitUrl},branch:${branch},description:${description}`)
         !templateName && (templateName = await prompt('模板名称: '))
         if (!templateName) {
-            console.log(chalk.red('\n × 请输入模板名称!'))
+            consoleColor.red('请输入模板名称!', false)
             return await this.inputParams({ templateName, gitUrl, branch, description })
         }
         !gitUrl && (gitUrl = await prompt('Git地址: '))
         if (!gitUrl) {
-            console.log(chalk.red('\n × 请输入Git地址 [最好是http(s)]!'))
+            consoleColor.red('请输入Git地址 [最好是http(s)]!', false)
             return await this.inputParams({ templateName, gitUrl, branch, description })
         }
         !branch && (branch = await prompt('Git分支: '))
         if (!branch) {
-            console.log(chalk.red('\n × 请输入分支名　比如:master'))
+            consoleColor.red('请输入分支名　比如:master', false)
             return await this.inputParams({ templateName, gitUrl, branch, description })
         }
         !description && (description = await prompt('描述: '))
         if (!description) {
-            console.log(chalk.red('\n × 请输入模板说明，方便理解项目用途'))
+            consoleColor.red('请输入模板说明，方便理解项目用途', false)
             return await this.inputParams({ templateName, gitUrl, branch, description })
         }
         console.log(`$> now:templateName:${templateName},gitUrl:${gitUrl},branch:${branch},description:${description}`)

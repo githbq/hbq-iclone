@@ -35,10 +35,10 @@ export default {
         const exists = await io.exists(projectPath)
         if (exists) {
             consoleColor.red(`项目已存在,路径:${projectPath}`, false)
-            let isDelete = await prompt('是否删除已存在的目录及文件:(y/n) ')
-            if (isDelete.toLowerCase().indexOf('y') !== -1) {
+            let isDelete = await confirm('是否删除已存在的目录及文件')
+            if (isDelete) {
                 await io.delete(projectPath)
-                consoleColor.green('旧项目删除成功!', true)
+                consoleColor.green('旧项目删除成功!', true, true)
             } else {
                 return false
             }
@@ -83,7 +83,7 @@ export default {
         }
     },
     async clone({ projectPath, projectName, branch, gitUrl, templateName }) {
-        consoleColor.white(`...开始生成项目 ${projectPath}`)
+        consoleColor.start(`...生成项目 ${projectPath}`)
         let cmdStr = `git clone --depth=1 -b ${branch} ${gitUrl} ${projectName} --recursive`
         await exec(cmdStr, { preventDefault: true })
         consoleColor.start(`删除原始.git版本信息`)
