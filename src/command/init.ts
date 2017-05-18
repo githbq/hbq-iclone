@@ -48,8 +48,6 @@ export default {
      * 输入参数
      */
     async inputParams({ templateName, projectName }) {
-        console.log(`$> init:templateName:${templateName},projectName:${projectName}`)
-
         const config = await getTemplate(isSelf)
 
         !templateName && (templateName = await prompt('模板名称(默认module): '))
@@ -65,7 +63,6 @@ export default {
             consoleColor.red('请输入项目名称!', false)
             return await this.inputParams({ templateName, projectName: '' })
         }
-        console.log(`$> now:templateName:${templateName},projectName:${projectName}`)
         return { templateName, projectName }
     },
     /**
@@ -86,14 +83,14 @@ export default {
         }
     },
     async clone({ projectPath, projectName, branch, gitUrl, templateName }) {
-        consoleColor.white('...开始生成项目')
+        consoleColor.white(`...开始生成项目 ${projectPath}`)
         let cmdStr = `git clone --depth=1 -b ${branch} ${gitUrl} ${projectName} --recursive`
-        await exec(cmdStr)
-        consoleColor.green(`正在删除原始.git版本信息`)
+        await exec(cmdStr, { preventDefault: true })
+        consoleColor.start(`删除原始.git版本信息`)
         await io.delete([projectPath, '.git'])
         await this.caseModule({ projectPath, projectName, templateName, gitUrl })
-        consoleColor.green(`正在执行：git init && git add . && git commit - am "init"`)
-        await exec('git init && git add . && git commit -am "init"', { cwd: projectPath })
+        consoleColor.start(`git init && git add . && git commit - am "init"`)
+        await exec('git init && git add . && git commit -am "init"', { cwd: projectPath, preventDefault: true })
         //添加 参数 -u 不安装库
         if (cmdData.uninstall) {
             console.log(`已跳过装库步骤`)
@@ -103,7 +100,7 @@ export default {
             } catch (e) {
                 const installYarnCmdStr = `npm i -g yarn`
                 const setTaobaoRegistry = `yarn config set registry https://registry.npm.taobao.org`
-                consoleColor.yellow('检测到未安装 yarn')
+                consoleColor.red('检测到未安装 yarn', false)
                 consoleColor.start(installYarnCmdStr)
                 await exec(installYarnCmdStr, { preventDefault: true })
                 consoleColor.start(setTaobaoRegistry)
