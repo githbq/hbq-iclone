@@ -8,8 +8,14 @@
 
 ## 命令   
 
-### iclone init
-> 根据提示创建一个新项目      
+### iclone init [-u] [-t [moduleName]] [-n [projectName]]
+> 根据提示创建一个新项目   
+- 默认会执行`yarn install `
+- 如果检测到当前系统没有安装`yarn`
+    - 会自动执行`npm i -g yarn`
+    - 并将`yarn` registry指向`https://registry.npm.taobao.org`
+- 参数 `-u` uninstall ,添加此参数创建项目的时候不再执行装库行为
+- 可以直接在命令上输入`-t [moduleName]` `-n [projectName]` 否则会进行默认交互按提示输入**库名**与**项目名**
 
 ### iclone add    
 > 添加一条模板配置       

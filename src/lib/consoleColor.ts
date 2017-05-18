@@ -8,7 +8,7 @@ export const consoleColor = {
     no: ' × ',
     color(color, msg, ok = null) {
         let prefix = ok === null ? '' : ok === false ? this.no : this.ok
-        console.log(chalk[color](`\n ${prefix} ${msg} \n`))
+        console.log(chalk[color](`\n ${prefix} ${msg} `))
     },
     grey(msg, ok?: boolean) {
         this.color('grey', msg, ok)
@@ -16,20 +16,20 @@ export const consoleColor = {
     green(msg, ok?: boolean) {
         this.color('green', msg, ok)
     },
+    yellow(msg, ok?: boolean) {
+        this.color('yellow', msg, ok)
+    },
     red(msg, ok?: boolean) {
         this.color('red', msg, ok)
     },
     white(msg, ok?: boolean) {
         this.color('white', msg, ok)
     },
-    yellow(msg, ok?: boolean) {
-        this.color('yellow', msg, ok)
-    },
     error(e: Error) {
         this.red(e.message)
     },
     start(msg) {
-        this.white(`\n\n$> 开始:${chalk.blue.bgWhite(msg)}`)
+        this.white(`$> 开始:${chalk.blue.bgWhite(msg)}`)
     },
     any(fn) {
         // chalk.blue.bgWhite(`✅`)

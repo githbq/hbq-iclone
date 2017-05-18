@@ -1,4 +1,6 @@
 {
+    //https://zhongsp.gitbooks.io/typescript-handbook/content/doc/handbook/tsconfig.json.html
+    //https://tslang.cn/docs/handbook/compiler-options.html
     "compilerOptions": {
         "target": "es2017",
         "module": "commonjs",
@@ -12,6 +14,8 @@
         "noEmitHelpers": true,
         "importHelpers": true,
         "strictNullChecks": false,
+        //不报告执行不到的代码错误。可以在代码中写return 中断后面的程序运行
+        "allowUnreachableCode": true,
         "lib": ["es6"],
         "typeRoots": ["node_modules/@types"],
         "types": [
