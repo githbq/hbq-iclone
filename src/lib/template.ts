@@ -33,7 +33,7 @@ export function getEmptyTemplate() {
     }
 }
 export async function showTemplate(self = false) {
-    consoleColor.yellow(`**********************当前项目配置**********************`, null, true)
+    consoleColor.yellow(`**********************当前模板配置**********************`, null, true)
     consoleColor.green(await getTemplateString(self), null, true)
     consoleColor.yellow(`*******************************************************`, null, true)
 }

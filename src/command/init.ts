@@ -106,11 +106,11 @@ export default {
                 consoleColor.start(setTaobaoRegistry)
                 await exec(setTaobaoRegistry, { preventDefault: true })
             }
-            consoleColor.green(`正在执行：yarn install`)
+            consoleColor.start(`yarn install`)
             await exec('yarn install', { cwd: projectPath })
         }
         consoleColor.green('项目生成成功', true)
-        consoleColor.green(`执行 cd ${projectPath} 开干吧`)
+        consoleColor.green(`执行  cd ${projectPath}  开始开发吧!`)
     },
     //开始生成项目
     async generate({ templateName, projectPath, projectName, branch, gitUrl }) {
