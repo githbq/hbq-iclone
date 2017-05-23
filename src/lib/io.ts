@@ -15,7 +15,6 @@ export const io = {
      * @param options 参数
      */
     resolveOptions(path: string, options: any = { fromRoot: false, fromCwd: false }) {
-        path = pathTool.join.apply(null, [].concat(path))
         // 考虑多路径处理
         path = pathTool.join.apply(null, (options.fromRoot ? [rootPath] : options.fromCwd ? [cwd] : []).concat(path))
         return path
