@@ -33,7 +33,8 @@ export const io = {
         // 对对象进行 美化格式处理
         content = _.isObject(content) ? stringify(content) : content
         return fs.outputFileAsync(path, content)
-    }, delete(path, options: any = { fromRoot: false, fromCwd: false }) {
+    },
+    delete(path, options: any = { fromRoot: false, fromCwd: false }) {
         path = this.resolveOptions(path, options)
         return fs.removeAsync(path)
     },

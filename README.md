@@ -31,7 +31,7 @@ $ npm i -g iclone-cli
 ### iclone config [-i]
 - 初始化本地配置文件并且显示配置文件所在目录
 - 直接执行iclone config 将显示当前本地配置所在地址
-- 参数 `-i`  init,是否将本地配置恢复到原始配置
+- 参数 `-i`  init,将本地配置恢复到原始配置
 
 ### 查看帮助  
 > iclone || iclone --help  
