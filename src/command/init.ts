@@ -89,7 +89,7 @@ export default {
         consoleColor.start(`删除原始.git版本信息`)
         await io.delete([projectPath, '.git'])
         await this.caseModule({ projectPath, projectName, templateName, gitUrl })
-        consoleColor.start(`git init && git add . && git commit - am "init"`)
+        consoleColor.start(`git init && git add . && git commit -am "init"`)
         await exec('git init && git add . && git commit -am "init"', { cwd: projectPath, preventDefault: true })
         //添加 参数 -u 不安装库
         if (cmdData.uninstall) {
