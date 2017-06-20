@@ -11,9 +11,14 @@
             "url": "https://github.com/githbq/hbq-module-cli-boilerplate.git"
         },
         "react": {
-            "description": "react-webpack2 最简化架构",
+            "description": "react webpack2 最简化架构",
             "branch": "master",
             "url": "https://github.com/githbq/hbq-simple-webpack2-react.git"
+        },
+        "ts-react": {
+            "descriptions": "typescript webpack2 react 最简化架构",
+            "branch": "master",
+            "url": "https://github.com/githbq/hbq-typescript-react-boilerplate.git"
         },
         "koa": {
             "descriptions": "一个完整的 koa2 typescript 开发框架",
@@ -21,7 +26,7 @@
             "url": "https://github.com/githbq/hbq-koa2-base.git"
         },
         "dva": {
-            "descriptions": "webpack2+dva+react 开发框架",
+            "descriptions": "webpack2 dva react 开发框架",
             "branch": "master",
             "url": "https://github.com/githbq/hbq-dva-base.git"
         }
