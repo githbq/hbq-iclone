@@ -20,6 +20,11 @@
             "branch": "master",
             "url": "https://github.com/githbq/hbq-typescript-react-boilerplate.git"
         },
+        "ts-react-mobx": {
+            "descriptions": "typescript webpack2 react  mobx 最简化架构",
+            "branch": "mobx",
+            "url": "https://github.com/githbq/hbq-typescript-react-boilerplate.git"
+        },
         "koa": {
             "descriptions": "一个完整的 koa2 typescript 开发框架",
             "branch": "master",
