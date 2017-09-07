@@ -25,7 +25,7 @@ export const io = {
     },
     readJson(path: string, options: any = { fromRoot: false, fromCwd: false }) {
         path = this.resolveOptions(path, options)
-        return fs.readJsonAsync(path, 'utf8')
+        return fs.readJsonAsync(path, { encoding: 'utf8' })
     },
     write(path: string, content, options: any = { fromRoot: false, fromCwd: false }) {
         path = this.resolveOptions(path, options)

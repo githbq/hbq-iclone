@@ -92,6 +92,12 @@ export default {
         await this.caseModule({ projectPath, projectName, templateName, gitUrl })
         consoleColor.start(`git init && git add . && git commit -am "init"`)
         await exec('git init && git add . && git commit -am "init"', { cwd: projectPath, preventDefault: true })
+        try {
+            consoleColor.start(`尝试打开 vscode`)
+            await exec('code .', { cwd: projectPath })
+        } catch (e) {
+            consoleColor.green(`vscode打开失败 跳过此步骤`)
+        }
         //添加 参数 -u 不安装库
         if (cmdData.uninstall) {
             console.log(`已跳过装库步骤`)
