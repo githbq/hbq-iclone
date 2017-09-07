@@ -16,12 +16,12 @@
             "url": "https://github.com/githbq/hbq-simple-webpack2-react.git"
         },
         "ts-react": {
-            "description": "typescript webpack2 react 最简化架构",
+            "description": "typescript webpack3 react 最简化架构",
             "branch": "master",
             "url": "https://github.com/githbq/hbq-typescript-react-boilerplate.git"
         },
         "ts-react-mobx": {
-            "description": "typescript webpack2 react  mobx 最简化架构",
+            "description": "typescript webpack3 react  mobx 最简化架构",
             "branch": "mobx",
             "url": "https://github.com/githbq/hbq-typescript-react-boilerplate.git"
         },
@@ -34,6 +34,11 @@
             "description": "webpack2 dva react 开发框架",
             "branch": "master",
             "url": "https://github.com/githbq/hbq-dva-base.git"
+        },
+        "ts-vue": {
+            "description": "webpack3 typescript vue 开发框架",
+            "branch": "master",
+            "url": "https://github.com/githbq/hbq-typescript-vue-boilerplate.git"
         }
     }
 }
