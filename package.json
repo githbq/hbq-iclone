@@ -1,6 +1,6 @@
 {
     "name": "iclone-cli",
-    "version": "2.2.25",
+    "version": "2.2.26",
     "description": "轻量级项目创建脚手架,可自定义模板 ",
     "bin": {"iclone": "./bin.js"},
     "scripts": {
@@ -21,7 +21,7 @@
         "ora": "^1.2.0",
         "pretty-ms": "^2.1.0",
         "prompt-promise2": "^0.0.3",
-        "require-dir": "^0.3.1",
+        "require-dir": "^0.3.2",
         "spawn-helper": "^0.0.5",
         "tslib": "^1.7.0",
         "user-home": "^2.0.0",
