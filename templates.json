@@ -39,6 +39,16 @@
             "description": "webpack3 typescript vue 开发框架",
             "branch": "master",
             "url": "https://github.com/githbq/hbq-typescript-vue-boilerplate.git"
+        },
+        "angular": {
+            "description": "angular4模板项目",
+            "branch": "master",
+            "url": "https://github.com/githbq/hbq-angular-boilerplate.git"
+        },
+        "demo": {
+            "description": "start html demo",
+            "branch": "master",
+            "url": "https://github.com/githbq/hbq-html-demos.git"
         }
     }
 }

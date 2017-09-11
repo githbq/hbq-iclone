@@ -1,6 +1,6 @@
 {
     "name": "iclone-cli",
-    "version": "2.2.27",
+    "version": "2.2.28",
     "description": "轻量级项目创建脚手架,可自定义模板 ",
     "bin": {"iclone": "./bin.js"},
     "scripts": {
