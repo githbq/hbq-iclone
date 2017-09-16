@@ -88,7 +88,7 @@ export default {
         await exec(cmdStr, { preventDefault: true })
         consoleColor.start(`删除原始.git版本信息`)
         await io.delete([projectPath, '.git'])
-        await io.delete([projectPath, '.npmignore'])
+        // await io.delete([projectPath, '.npmignore'])
         await this.caseModule({ projectPath, projectName, templateName, gitUrl })
         consoleColor.start(`git init && git add . && git commit -am "init"`)
         await exec('git init && git add . && git commit -am "init"', { cwd: projectPath, preventDefault: true })
