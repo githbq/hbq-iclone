@@ -9,7 +9,7 @@ $ npm i -g iclone-cli
 ---
 
 ## 命令   
-### iclone init [-u] [-t <templateName>] [-n <projectName>]
+### `iclone init [-u] [-t <templateName>] [-n <projectName>]`
 
 > 根据提示创建一个新项目   
 - 默认会执行`yarn install `
