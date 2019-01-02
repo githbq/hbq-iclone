@@ -5,6 +5,11 @@
             "branch": "master",
             "url": "https://github.com/githbq/hbq-module-boilerplate.git"
         },
+        "js-module": {
+            "description": "empty js module boilerplate",
+            "branch": "master",
+            "url": "https://github.com/githbq/hbq-js-module-template.git"
+        },
         "cli": {
             "description": "命令行项目模板",
             "branch": "master",
@@ -39,6 +44,11 @@
             "description": "webpack3 typescript vue 开发框架",
             "branch": "master",
             "url": "https://github.com/githbq/hbq-typescript-vue-boilerplate.git"
+        },
+        "ts-vue-next": {
+            "description": "webpack4 typescript vue@2.x 开发框架",
+            "branch": "master",
+            "url": "https://github.com/githbq/hbq-typescript-vue-next.git"
         },
         "angular": {
             "description": "angular4模板项目",
