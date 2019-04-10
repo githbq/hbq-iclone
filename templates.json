@@ -59,6 +59,11 @@
             "description": "start html demo",
             "branch": "master",
             "url": "https://github.com/githbq/hbq-html-demos.git"
+        },
+        "fragment": {
+            "description": "代码片段 for demo",
+            "branch": "master",
+            "url": "https://github.com/githbq/hbq-code-fragment.git"
         }
     }
 }
