@@ -16,8 +16,7 @@
         "lib": ["es6"],
         "typeRoots": ["node_modules/@types"],
         "types": [
-            "cli-color",
-            "fs-extra-promise",
+            "cli-color", 
             "lodash",
             "mocha",
             "node",
