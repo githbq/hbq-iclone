@@ -5,6 +5,11 @@
             "branch": "master",
             "url": "https://github.com/githbq/hbq-module-boilerplate.git"
         },
+        "module-cli-lib": {
+            "description": "empty module-cli-lib boilerplate",
+            "branch": "master",
+            "url": "https://github.com/githbq/hbq-module-cli-lib-boilerplate.git"
+        },
         "js-module": {
             "description": "empty js module boilerplate",
             "branch": "master",

@@ -9,14 +9,18 @@
         "alwaysStrict": true,
         "sourceMap": true,
         "noEmit": false,
-        "noEmitHelpers": true,
+        "noEmitHelpers": false,
         "importHelpers": true,
         "strictNullChecks": false,
         "allowUnreachableCode": true,
-        "lib": ["es6"],
-        "typeRoots": ["node_modules/@types"],
+        "lib": [
+            "es6"
+        ],
+        "typeRoots": [
+            "node_modules/@types"
+        ],
         "types": [
-            "cli-color", 
+            "cli-color",
             "lodash",
             "mocha",
             "node",
